@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 
+// middleware
 app.use(function(req, res, next) {
     next();
 });
@@ -18,7 +19,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes HTTP GET requests to the specified path "/" with the specified callback function
-app.post('/', function(req, res) {
+app.get('/', function(req, res) {
     console.log(req.body.name); 
     res.send('Hello, ư!');
 });
