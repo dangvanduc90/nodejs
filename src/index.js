@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const jwt = require('jsonwebtoken');
 var sessionMW = require('./common/session');
-
+var compression = require('compression')
 var cert = require('fs').readFileSync(__dirname + '/../key/jwtRS256.key');
 
 // Define port number as 3000
@@ -23,6 +23,11 @@ app.use(bodyParser.json())
 // parse application/x-www-form-urlencoded
 // Parses the body for POST, PUT, DELETE, etc.
 app.use(bodyParser.urlencoded({ extended: true }));
+
+console.log(app.get('env'))
+
+// compress all responses
+app.use(compression())
 
 // specifix middleware
 app.post('/login', sessionMW);
